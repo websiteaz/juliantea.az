@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JulianaTea.Az — Türkiyə istehsalı bitki çayı</title>
+<meta name="description" content="Juliana Form Tea — 21 növ bitkidən ibarət Türkiyə istehsalı bitki çayı. Bakı və rayonlara çatdırılma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --leaf:#1E4A2C;      /* dərin yarpaq yaşılı */
+  --sprout:#7FB23A;    /* təzə zoğ */
+  --gold:#B8912E;      /* loqodakı qızılı */
+  --paper:#F4F7EE;     /* açıq bitki tonu */
+  --card:#FFFFFF;
+  --ink:#18261C;
+  --muted:#58685C;
+  --line:#D9E2D0;
+  --wa:#1FA855;
+  --radius-lg:28px; --radius-sm:10px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --leaf:#9FD37A; --sprout:#9FD37A; --gold:#D8B45A; --paper:#101812; --card:#18231B;
+    --ink:#E7EFE3; --muted:#A3B3A6; --line:#2A3A2E;
+  }
+}
+:root[data-theme="dark"]{
+  --leaf:#9FD37A; --sprout:#9FD37A; --gold:#D8B45A; --paper:#101812; --card:#18231B;
+  --ink:#E7EFE3; --muted:#A3B3A6; --line:#2A3A2E;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:"Lora",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.15;margin:0;color:var(--leaf)}
+h1{font-size:clamp(2.4rem,5.6vw,4.4rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+h3{font-size:1.35rem}
+p{margin:0 0 1em;max-width:62ch}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand b{font-family:"Lora",serif;font-style:italic;font-size:1.7rem;color:var(--leaf);font-weight:600}
+.brand small{font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.08em}
+.menu{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.menu a{display:block;padding:9px 14px;border-radius:999px;text-decoration:none;font-weight:600;color:var(--muted)}
+.menu a:hover{color:var(--leaf)}
+.menu a[aria-current="page"]{background:var(--leaf);color:var(--paper)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--ink);cursor:pointer}
+@media (max-width:760px){
+  .burger{display:grid;place-items:center}
+  .menu{position:absolute;left:0;right:0;top:72px;flex-direction:column;background:var(--paper);padding:10px 20px 20px;border-bottom:1px solid var(--line);display:none}
+  .menu.open{display:flex}
+  .menu a{padding:14px 16px}
+  .nav .btn-wa{display:none}
+}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{filter:brightness(1.07)}
+.btn-ghost{border-color:var(--leaf);color:var(--leaf);background:transparent}
+.btn-ghost:hover{background:var(--leaf);color:var(--paper)}
+.btn svg{width:20px;height:20px;flex:none}
+
+main{min-height:70vh}
+section{padding:clamp(56px,8vw,104px) 0}
+.page{display:none}
+.page.active{display:block}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:clamp(36px,5vw,64px)}
+.hero .lead{font-size:1.18rem;color:var(--muted);margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.origin{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--gold);margin-bottom:18px}
+.ring{position:relative;aspect-ratio:1;width:min(520px,100%);margin-inline:auto}
+.ring svg.orbit{position:absolute;inset:0;width:100%;height:100%;animation:spin 90s linear infinite}
+.ring text{font-family:"Manrope",sans-serif;font-size:13.2px;font-weight:600;letter-spacing:.05em;fill:var(--leaf)}
+.ring .dot{fill:var(--gold)}
+.ring .center{position:absolute;inset:17%;border-radius:50%;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--sprout) 26%,var(--card)),var(--card) 70%);display:grid;place-items:center;border:1px solid var(--line)}
+.ring .count{position:absolute;right:4%;bottom:10%;background:var(--leaf);color:var(--paper);border-radius:50%;width:104px;height:104px;display:grid;place-items:center;text-align:center;line-height:1.05;font-weight:700;font-size:.85rem}
+.ring .count strong{display:block;font-family:"Lora",serif;font-size:2.4rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ring svg.orbit{animation:none}}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.ring{max-width:400px}}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts div{padding:28px 24px}
+.facts div+div{border-left:1px solid var(--line)}
+.facts b{display:block;font-family:"Lora",serif;font-size:1.35rem;color:var(--leaf)}
+.facts span{color:var(--muted);font-size:.95rem}
+@media (max-width:760px){.facts{grid-template-columns:1fr}.facts div+div{border-left:0;border-top:1px solid var(--line)}}
+
+/* herbs */
+.split{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(28px,5vw,72px);align-items:start}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.herbs{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:0}
+.herbs li{padding:9px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-weight:600;font-size:.95rem}
+.herbs li:nth-child(4n+1){border-color:color-mix(in srgb,var(--sprout) 60%,var(--line))}
+.note{font-size:.85rem;color:var(--muted);margin-top:16px}
+
+/* steps */
+.steps{list-style:none;counter-reset:s;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.steps li{counter-increment:s;padding:0 22px 0 0;position:relative}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--leaf);color:var(--paper);font-family:"Lora",serif;font-size:1.3rem;font-weight:600;margin-bottom:16px;position:relative;z-index:1}
+.steps li::after{content:"";position:absolute;top:23px;left:46px;right:0;height:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps b{display:block;font-size:1.05rem;margin-bottom:4px}
+.steps span{color:var(--muted);font-size:.95rem}
+@media (max-width:760px){.steps{grid-template-columns:1fr;gap:26px}.steps li::after{display:none}}
+
+/* green band */
+.band{background:var(--leaf);color:var(--paper);border-radius:var(--radius-lg);padding:clamp(32px,5vw,60px);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.band h2{color:var(--paper)}
+.band p{opacity:.85;margin:10px 0 0}
+.band .btn-wa{box-shadow:0 0 0 4px color-mix(in srgb,#fff 18%,transparent)}
+
+/* products */
+.page-head{padding-bottom:0}
+.page-head p{color:var(--muted);font-size:1.12rem;margin-top:14px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+@media (max-width:960px){.products{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.products{grid-template-columns:1fr}}
+.product{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column}
+.product.featured{border:2px solid var(--gold)}
+.product .pic{background:color-mix(in srgb,var(--sprout) 14%,var(--card));padding:26px;display:grid;place-items:center;position:relative;min-height:230px}
+.tag{position:absolute;top:16px;left:16px;background:var(--gold);color:#fff;font-weight:700;font-size:.8rem;padding:5px 12px;border-radius:999px}
+.product .body{padding:24px;display:flex;flex-direction:column;flex:1}
+.product .body p{color:var(--muted);font-size:.97rem}
+.price{display:flex;align-items:baseline;gap:10px;margin:6px 0 18px}
+.price strong{font-family:"Lora",serif;font-size:2rem;color:var(--leaf)}
+.price s{color:var(--muted)}
+.product ul{padding-left:18px;margin:0 0 20px;color:var(--ink);font-size:.95rem}
+.product .btn{margin-top:auto;justify-content:center}
+
+.usage{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--card);margin-top:36px}
+.usage div{padding:28px}
+.usage div+div{border-left:1px solid var(--line)}
+.usage b{display:block;font-family:"Lora",serif;font-size:1.2rem;color:var(--leaf);margin-bottom:6px}
+.usage span{color:var(--muted);font-size:.96rem}
+@media (max-width:760px){.usage{grid-template-columns:1fr}.usage div+div{border-left:0;border-top:1px solid var(--line)}}
+
+details.faq{border-bottom:1px solid var(--line);padding:18px 0}
+details.faq summary{cursor:pointer;font-weight:700;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+details.faq summary::after{content:"+";font-size:1.4rem;color:var(--gold);line-height:1}
+details.faq[open] summary::after{content:"–"}
+details.faq p{margin:12px 0 0;color:var(--muted)}
+
+/* blog */
+.posts{display:grid;grid-template-columns:1.4fr 1fr;gap:22px;margin-top:40px}
+@media (max-width:860px){.posts{grid-template-columns:1fr}}
+.post{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:26px;cursor:pointer;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column;gap:8px;width:100%}
+.post:hover{border-color:var(--sprout)}
+.post.big{grid-row:span 2;background:var(--leaf);color:var(--paper);border:none;justify-content:flex-end;min-height:380px;padding:36px}
+.post.big h3{color:var(--paper);font-size:clamp(1.6rem,3vw,2.2rem)}
+.post.big .meta{color:color-mix(in srgb,var(--paper) 75%,transparent)}
+.post .meta{font-size:.85rem;color:var(--muted);font-weight:600}
+.post-list{display:grid;gap:22px}
+.article{max-width:720px;margin-inline:auto}
+.article h1{font-size:clamp(2rem,4.4vw,3rem)}
+.article .meta{color:var(--muted);font-weight:600;margin:16px 0 34px}
+.article p,.article li{font-family:"Lora",Georgia,serif;font-size:1.12rem;line-height:1.75}
+.article h2{font-size:1.6rem;margin:36px 0 12px}
+.back{background:none;border:none;color:var(--leaf);font:inherit;font-weight:700;cursor:pointer;padding:0;margin-bottom:28px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);margin-top:40px}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+.channels{display:grid;gap:14px}
+.channel{display:flex;gap:16px;align-items:center;padding:20px;border-radius:var(--radius-sm);background:var(--card);border:1px solid var(--line);text-decoration:none}
+.channel:hover{border-color:var(--sprout)}
+.channel .ic{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--sprout) 20%,var(--card));color:var(--leaf);flex:none}
+.channel .ic svg{width:22px;height:22px}
+.channel b{display:block}
+.channel span{color:var(--muted);font-size:.95rem}
+form{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(24px,4vw,36px);display:grid;gap:16px}
+label{font-weight:600;font-size:.95rem;display:grid;gap:6px}
+input,select,textarea{font:inherit;padding:13px 14px;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--paper);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.err{color:#C0392B;font-size:.9rem;min-height:1.2em;margin:0}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:44px 0 36px;margin-top:40px;color:var(--muted);font-size:.93rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+.disclaimer{font-size:.82rem;max-width:80ch;margin-top:26px}
+
+/* floating wa */
+.float-wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:#fff;box-shadow:0 8px 24px rgba(31,168,85,.35);z-index:30}
+.float-wa svg{width:30px;height:30px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></symbol>
+  <symbol id="truck" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M1 3h15v13H1zM16 8h4l3 3v5h-7zM5.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM18.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></symbol>
+  <symbol id="tt" viewBox="0 0 24 24"><path fill="currentColor" d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.8 5.8 0 1 0 5 5.7V9.1a7.4 7.4 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.3-1.6Z"/></symbol>
+  <!-- çay qutusu -->
+  <symbol id="box" viewBox="0 0 160 200">
+    <path d="M30 40 L110 28 L140 44 L60 58 Z" fill="#2F6B3C"/>
+    <path d="M30 40 L60 58 L60 190 L30 172 Z" fill="#1E4A2C"/>
+    <path d="M60 58 L140 44 L140 176 L60 190 Z" fill="#3E8A48"/>
+    <path d="M78 150 C 92 110, 112 104, 126 78 C 118 110, 104 128, 78 150 Z" fill="#9FD37A" opacity=".9"/>
+    <path d="M86 138 C 100 118, 110 112, 120 96" stroke="#1E4A2C" stroke-width="1.5" fill="none"/>
+    <text x="100" y="88" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-weight="600" font-size="21" fill="#fff" transform="rotate(-10 100 88)">Juliana</text>
+    <text x="100" y="104" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="7" fill="#E7CF86" letter-spacing="1.5" transform="rotate(-10 100 104)">FORM TEA</text>
+    <text x="100" y="172" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="600" font-size="7" fill="#fff" opacity=".85" transform="rotate(-10 100 172)">21 bitki • 30 süzgəc</text>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#ana" aria-label="JulianaTea.Az ana səhifə">
+      <b>Juliana</b><small>FORM TEA</small>
+    </a>
+    <button class="burger" aria-label="Menyunu aç" aria-expanded="false" aria-controls="menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="menu" id="menu">
+      <li><a href="#ana">Ana səhifə</a></li>
+      <li><a href="#mehsullar">Məhsullar</a></li>
+      <li><a href="#bloq">Bloq</a></li>
+      <li><a href="#elaqe">Əlaqə</a></li>
+    </ul>
+    <a class="btn btn-wa" href="https://wa.me/994515278899?text=Salam%2C%20Juliana%20Form%20Tea%20sifari%C5%9F%20etm%C9%99k%20ist%C9%99yir%C9%99m" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Sifariş et</a>
+  </div>
+</header>
+
+<main>
+<!-- ================= ANA SƏHİFƏ ================= -->
+<div class="page" id="p-ana">
+  <section class="wrap hero">
+    <div>
+      <div class="origin">🇹🇷 Türkiyə istehsalı</div>
+      <h1>Bir fincan çay, iyirmi bir bitki.</h1>
+      <p class="lead">Juliana Form Tea — gündəlik rejiminizə uyğun təbii bitki qarışığı. Balanslı qidalanma və hərəkətlə birlikdə formanızı qorumağa dəstək olur.</p>
+      <div class="ctas">
+        <a class="btn btn-wa" href="https://wa.me/994515278899?text=Salam%2C%20Juliana%20Form%20Tea%20sifari%C5%9F%20etm%C9%99k%20ist%C9%99yir%C9%99m" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>WhatsApp-da sifariş et</a>
+        <a class="btn btn-ghost" href="#mehsullar">Qiymətlərə bax</a>
+      </div>
+    </div>
+    <div class="ring" aria-hidden="true">
+      <svg class="orbit" viewBox="0 0 400 400">
+        <defs><path id="circ" d="M200,200 m-178,0 a178,178 0 1,1 356,0 a178,178 0 1,1 -356,0"/></defs>
+        <text><textPath href="#circ" id="herbring"></textPath></text>
+      </svg>
+      <div class="center"><svg viewBox="0 0 160 200" width="62%"><use href="#box"/></svg></div>
+      <div class="count"><div><strong>21</strong>növ bitki</div></div>
+    </div>
+  </section>
+
+  <div class="wrap facts">
+    <div><b>Təbii tərkib</b><span>Yalnız qurudulmuş bitkilər, süni ətirsiz</span></div>
+    <div><b>Bütün Azərbaycana</b><span>Bakıda kuryer, rayonlara poçtla çatdırılma</span></div>
+    <div><b>Qapıda ödəniş</b><span>Məhsulu alanda nağd və ya kartla ödəyin</span></div>
+  </div>
+
+  <section class="wrap split">
+    <div>
+      <h2>Qutunun içində nə var</h2>
+      <p style="margin-top:16px;color:var(--muted)">Hər süzgəcdə 21 bitkinin balanslaşdırılmış qarışığı var. Dadı yüngül, nanə və limon otu notları ilə təravətlidir.</p>
+    </div>
+    <div>
+      <ul class="herbs" id="herblist"></ul>
+      <p class="note">Tam tərkib qutunun üzərində göstərilib. Hamiləlik, əmizdirmə dövründə və ya daimi dərman qəbul edirsinizsə, istifadədən əvvəl həkimlə məsləhətləşin.</p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <h2>Sifariş necə verilir</h2>
+    <ol class="steps">
+      <li><b>Yazın</b><span>WhatsApp-da və ya zənglə bizə müraciət edin</span></li>
+      <li><b>Paketi seçin</b><span>1, 2 və ya 3 qutuluq paketdən birini seçin</span></li>
+      <li><b>Ünvanı bildirin</b><span>Bakı və ya rayon ünvanınızı yazın</span></li>
+      <li><b>Qapıda ödəyin</b><span>Çay gəlib çatanda ödəniş edirsiniz</span></li>
+    </ol>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="band">
+      <div>
+        <h2>Suallarınız var?</h2>
+        <p>Səbinə xanım WhatsApp-da hər gün cavab verir.</p>
+      </div>
+      <a class="btn btn-wa" href="https://wa.me/994515278899" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>051 527 88 99</a>
+    </div>
+  </section>
+</div>
+
+<!-- ================= MƏHSULLAR ================= -->
+<div class="page" id="p-mehsullar">
+  <section class="wrap page-head">
+    <h1>Məhsullar</h1>
+    <p>Bir qutu 30 günlük istifadə üçündür. Çox qutu alanda qiymət ucuzlaşır.</p>
+
+    <div class="products">
+      <article class="product">
+        <div class="pic"><svg viewBox="0 0 160 200" width="130"><use href="#box"/></svg></div>
+        <div class="body">
+          <h3>1 qutu</h3>
+          <div class="price"><strong>39 ₼</strong></div>
+          <p>İlk dəfə sınamaq istəyənlər üçün.</p>
+          <ul><li>30 süzgəc</li><li>30 günlük istifadə</li></ul>
+          <a class="btn btn-wa" data-order="1 qutu" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Sifariş et</a>
+        </div>
+      </article>
+      <article class="product featured">
+        <div class="pic"><span class="tag">Ən çox seçilən</span><svg viewBox="0 0 160 200" width="120" style="margin-right:-40px"><use href="#box"/></svg><svg viewBox="0 0 160 200" width="120" style="position:absolute;left:calc(50% - 90px);top:40px"><use href="#box"/></svg></div>
+        <div class="body">
+          <h3>2 qutu</h3>
+          <div class="price"><strong>69 ₼</strong><s>78 ₼</s></div>
+          <p>İki aylıq müntəzəm istifadə üçün.</p>
+          <ul><li>60 süzgəc</li><li>Bakı daxili pulsuz çatdırılma</li></ul>
+          <a class="btn btn-wa" data-order="2 qutu" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Sifariş et</a>
+        </div>
+      </article>
+      <article class="product">
+        <div class="pic"><svg viewBox="0 0 160 200" width="100"><use href="#box"/></svg><svg viewBox="0 0 160 200" width="100"><use href="#box"/></svg><svg viewBox="0 0 160 200" width="100"><use href="#box"/></svg></div>
+        <div class="body">
+          <h3>3 qutu</h3>
+          <div class="price"><strong>95 ₼</strong><s>117 ₼</s></div>
+          <p>Özünüz və ailəniz üçün ən sərfəli seçim.</p>
+          <ul><li>90 süzgəc</li><li>Bütün Azərbaycana pulsuz çatdırılma</li></ul>
+          <a class="btn btn-wa" data-order="3 qutu" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Sifariş et</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>İstifadə qaydası</h2>
+    <div class="usage">
+      <div><b>Gündə 1 fincan</b><span>Bir süzgəci 200 ml qaynar suya qoyun.</span></div>
+      <div><b>5–7 dəqiqə dəmləyin</b><span>Şəkər əlavə etməyin; istəsəniz limon dilimi əlavə edin.</span></div>
+      <div><b>Yeməkdən sonra için</b><span>Gün ərzində bol su içməyi unutmayın.</span></div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <h2>Tez-tez verilən suallar</h2>
+    <div style="margin-top:20px;max-width:780px">
+      <details class="faq"><summary>Çatdırılma nə qədər çəkir?</summary><p>Bakı, Sumqayıt və Xırdalanda 24 saat ərzində, rayonlara isə adətən 2–4 iş günü ərzində çatdırılır.</p></details>
+      <details class="faq"><summary>Ödənişi necə edirəm?</summary><p>Məhsulu təhvil alanda kuryerə nağd və ya kartla ödəyirsiniz. Qabaqcadan ödəniş tələb olunmur.</p></details>
+      <details class="faq"><summary>Kimlər istifadə etməməlidir?</summary><p>Hamilə və əmizdirən qadınlar, 18 yaşdan kiçiklər, xroniki xəstəliyi olan və ya daimi dərman qəbul edən şəxslər əvvəlcə həkimlə məsləhətləşməlidir.</p></details>
+      <details class="faq"><summary>Nəticə nə vaxt hiss olunur?</summary><p>Hər orqanizm fərqlidir. Çay balanslı qidalanma, kifayət qədər yuxu və gündəlik hərəkətlə birlikdə istifadə olunduqda daha yaxşı dəstək olur.</p></details>
+    </div>
+  </section>
+</div>
+
+<!-- ================= BLOQ ================= -->
+<div class="page" id="p-bloq">
+  <section class="wrap page-head" id="blog-list">
+    <h1>Bloq</h1>
+    <p>Bitki çayları, sağlam vərdişlər və gündəlik rejim haqqında faydalı yazılar.</p>
+    <div class="posts" id="posts"></div>
+  </section>
+  <section class="wrap" id="blog-article" hidden></section>
+</div>
+
+<!-- ================= ƏLAQƏ ================= -->
+<div class="page" id="p-elaqe">
+  <section class="wrap page-head">
+    <h1>Əlaqə</h1>
+    <p>Sifariş, çatdırılma və ya məhsul barədə sualınız varsa, bizə yazın.</p>
+    <div class="contact">
+      <div class="channels">
+        <a class="channel" href="https://wa.me/994515278899" target="_blank" rel="noopener"><span class="ic"><svg><use href="#wa"/></svg></span><div><b>WhatsApp</b><span>051 527 88 99 — Səbinə xanım</span></div></a>
+        <a class="channel" href="tel:+994515278899"><span class="ic"><svg><use href="#phone"/></svg></span><div><b>Zəng edin</b><span>Hər gün 09:00–21:00</span></div></a>
+        <a class="channel" href="https://www.tiktok.com/@julianaa.com.tr" target="_blank" rel="noopener"><span class="ic"><svg><use href="#tt"/></svg></span><div><b>TikTok</b><span>@julianaa.com.tr</span></div></a>
+        <div class="channel"><span class="ic"><svg><use href="#truck"/></svg></span><div><b>Çatdırılma</b><span>Bakı, Sumqayıt, Xırdalan və bütün rayonlar</span></div></div>
+      </div>
+
+      <form id="orderForm" novalidate>
+        <h3>Sürətli sifariş</h3>
+        <div class="row2">
+          <label>Adınız<input name="ad" autocomplete="name" required></label>
+          <label>Telefon<input name="tel" type="tel" autocomplete="tel" placeholder="050 000 00 00" required></label>
+        </div>
+        <div class="row2">
+          <label>Paket<select name="paket"><option>1 qutu — 39 ₼</option><option selected>2 qutu — 69 ₼</option><option>3 qutu — 95 ₼</option></select></label>
+          <label>Şəhər / rayon<input name="yer" placeholder="Məs. Bakı, Gəncə"></label>
+        </div>
+        <label>Qeyd<textarea name="qeyd" placeholder="Ünvan və ya sualınız"></textarea></label>
+        <p class="err" id="formErr" role="alert"></p>
+        <button class="btn btn-wa" type="submit" style="justify-content:center"><svg><use href="#wa"/></svg>WhatsApp-a göndər</button>
+      </form>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><span class="brand"><b>Juliana</b><small>FORM TEA</small></span><p style="margin-top:8px">Türkiyə istehsalı bitki çayı — Azərbaycan rəsmi satış nümayəndəsi.</p></div>
+      <div>051 527 88 99<br>© <span id="yr"></span> JulianaTea.Az</div>
+    </div>
+    <p class="disclaimer">Məhsul qida əlavəsidir, dərman vasitəsi deyil və xəstəliklərin müalicəsi üçün nəzərdə tutulmayıb. Nəticələr şəxsdən şəxsə dəyişir və balanslı qidalanma, fiziki aktivlikdən asılıdır.</p>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/994515278899" target="_blank" rel="noopener" aria-label="WhatsApp ilə yazın"><svg><use href="#wa"/></svg></a>
+
+<script>
+const WA = "994515278899";
+const herbs = ["Yaşıl çay","Rezene","Nanə","Limon otu","Zəncəfil","Darçın","Çobanyastığı","Hibiskus","Mate","Melisa","Kəklikotu","Adaçayı","Gicitkən","Qızılgül","Ardıç","Cökə","Şüyüd toxumu","Anis","Moruq yarpağı","Kasnı","Limon qabığı"];
+document.getElementById("herblist").innerHTML = herbs.map(h=>`<li>${h}</li>`).join("");
+document.getElementById("herbring").textContent = herbs.join("  ✦  ") + "  ✦  ";
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+document.querySelectorAll("[data-order]").forEach(a=>{
+  a.href = `https://wa.me/${WA}?text=${encodeURIComponent("Salam! Juliana Form Tea — "+a.dataset.order+" sifariş etmək istəyirəm.")}`;
+});
+
+/* blog data */
+const posts = [
+  {id:"demleme",t:"Bitki çayını düzgün dəmləməyin 5 qaydası",d:"4 dəq oxu",
+   b:`<p>Bitki çayının dadı və faydası çox vaxt dəmləmə üsulundan asılıdır. Bir neçə sadə qayda fərqi dərhal hiss etdirir.</p>
+   <h2>Suyun temperaturu</h2><p>Bitki qarışıqları üçün yeni qaynamış su uyğundur. Suyu yenidən-yenidən qaynatmayın, təzə su istifadə edin.</p>
+   <h2>Dəmləmə vaxtı</h2><p>5–7 dəqiqə kifayətdir. Çox uzun saxladıqda dad acılaşa bilər.</p>
+   <h2>Qapağı bağlayın</h2><p>Fincanın üstünü nəlbəki ilə örtün ki, efir yağları buxarlanıb getməsin.</p>
+   <h2>Şəkərsiz için</h2><p>Şirinlik istəyirsinizsə, bir çay qaşığı bal və ya limon dilimi əlavə edin.</p>
+   <h2>Gündə bir fincan</h2><p>Bitki çayını müntəzəm, lakin ölçülü için. Daha çox içmək daha yaxşı nəticə demək deyil.</p>`},
+  {id:"su",t:"Gün ərzində nə qədər su içmək lazımdır?",d:"3 dəq oxu",
+   b:`<p>Su orqanizmin demək olar ki, bütün proseslərində iştirak edir. Ehtiyac yaşa, çəkiyə, hava şəraitinə və fiziki aktivliyə görə dəyişir.</p><h2>Sadə vərdişlər</h2><p>Səhər oyananda bir stəkan su için, yanınızda şüşə gəzdirin, hər yeməkdən əvvəl bir stəkan su için. Susuzluq hiss etməyi gözləməyin.</p>`},
+  {id:"yuxu",t:"Yuxu və forma: niyə yaxşı yatmaq vacibdir",d:"5 dəq oxu",
+   b:`<p>Az yuxu iştah hormonlarına təsir edir və gün ərzində şirniyyata meyli artıra bilər.</p><h2>Axşam rejimi</h2><p>Yatmazdan bir saat əvvəl telefonu kənara qoyun, otağı qaranlıq və sərin saxlayın, hər gün eyni vaxtda yatmağa çalışın.</p>`},
+  {id:"hereket",t:"İdman zalı olmadan gündəlik hərəkət",d:"4 dəq oxu",
+   b:`<p>Aktiv qalmaq üçün mütləq idman zalına getmək lazım deyil.</p><h2>Kiçik addımlar</h2><p>Lift əvəzinə pilləkəndən istifadə edin, yeməkdən sonra 15 dəqiqəlik gəzintiyə çıxın, telefonla danışarkən ayaq üstə gəzin.</p>`}
+];
+const postsEl = document.getElementById("posts");
+postsEl.innerHTML = `<button class="post big" data-id="${posts[0].id}"><span class="meta">${posts[0].d}</span><h3>${posts[0].t}</h3></button>
+<div class="post-list">${posts.slice(1).map(p=>`<button class="post" data-id="${p.id}"><span class="meta">${p.d}</span><h3>${p.t}</h3></button>`).join("")}</div>`;
+postsEl.addEventListener("click",e=>{const b=e.target.closest(".post");if(b)location.hash="bloq/"+b.dataset.id;});
+
+function showArticle(id){
+  const p = posts.find(x=>x.id===id);
+  const list=document.getElementById("blog-list"), art=document.getElementById("blog-article");
+  if(!p){list.hidden=false;art.hidden=true;return;}
+  list.hidden=true;art.hidden=false;
+  art.innerHTML=`<article class="article"><button class="back" onclick="location.hash='bloq'">‹ Bütün yazılar</button><h1>${p.t}</h1><div class="meta">${p.d}</div>${p.b}
+  <div class="band" style="margin-top:44px"><div><h2 style="font-size:1.6rem">Juliana Form Tea-ni sınayın</h2></div><a class="btn btn-wa" href="https://wa.me/${WA}" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Sifariş et</a></div></article>`;
+}
+
+/* router */
+const menu=document.getElementById("menu"), burger=document.querySelector(".burger");
+function route(){
+  const h=(location.hash.slice(1)||"ana");
+  const [page,sub]=h.split("/");
+  const valid=["ana","mehsullar","bloq","elaqe"].includes(page)?page:"ana";
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="p-"+valid));
+  menu.querySelectorAll("a").forEach(a=>{ if(a.getAttribute("href")==="#"+valid) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  if(valid==="bloq") showArticle(sub);
+  menu.classList.remove("open"); burger.setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route); route();
+burger.addEventListener("click",()=>{const o=menu.classList.toggle("open");burger.setAttribute("aria-expanded",o);});
+
+/* form */
+document.getElementById("orderForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const f=e.target, err=document.getElementById("formErr");
+  if(!f.ad.value.trim()){err.textContent="Adınızı yazın.";f.ad.focus();return;}
+  if(f.tel.value.replace(/\D/g,"").length<9){err.textContent="Telefon nömrəsini tam yazın (məs. 050 000 00 00).";f.tel.focus();return;}
+  err.textContent="";
+  const msg=`Salam! Sifariş:\nAd: ${f.ad.value}\nTelefon: ${f.tel.value}\nPaket: ${f.paket.value}\nŞəhər: ${f.yer.value||"-"}\nQeyd: ${f.qeyd.value||"-"}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+});
+</script>
+</body>
+</html>
